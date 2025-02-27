@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Management Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 d-none d-md-block bg-dark sidebar p-3" style="min-height: 100vh;">
+                <div class="sidebar-sticky">
+                    <h3 class="text-light">Dashboard</h3>
+                    <div class="nav flex-column gap-2">
+                        <a href="dashboard.html" class="card text-light bg-dark border-light p-2 text-decoration-none">
+                            <div class="card-body text-center">
+                                <i class="fas fa-home mb-2"></i>
+                                <div>Dashboard</div>
+                            </div>
+                        </a>
+                        <a href="stock-in.html" class="card text-light bg-success border-light p-5 text-decoration-none">
+                            <div class="card-body text-center">
+                                <i class="fas fa-arrow-up mb-2"></i>
+                                <div>Stock In</div>
+                            </div>
+                        </a>
+                    
+                        <a href="stock-out.html" class="card text-light bg-danger border-light p-5 text-decoration-none">
+                            <div class="card-body text-center">
+                                <i class="fas fa-arrow-up mb-2"></i>
+                                <div>Stock Out</div>
+                            </div>
+                        </a>
+                        <a href="stock.html" class="card text-light bg-dark border-light p-2 text-decoration-none">
+                            <div class="card-body text-center">
+                                <i class="fas fa-box mb-2"></i>
+                                <div>Stock</div>
+                            </div>
+                        </a>
+                        <a href="accounts.html" class="card text-light bg-dark border-light p-2 text-decoration-none">
+                            <div class="card-body text-center">
+                                <i class="fas fa-user mb-2"></i>
+                                <div>Account</div>
+                            </div>
+                        </a>
+                        <a href="reports.html" class="card text-light bg-dark border-light p-2 text-decoration-none">
+                            <div class="card-body text-center">
+                                <i class="fas fa-chart-bar mb-2"></i>
+                                <div>Report</div>
+                            </div>
+                        </a>
+                        <a href="logout.html" class="card text-light bg-dark border-light p-2 text-decoration-none">
+                            <div class="card-body text-center">
+                                <i class="fas fa-sign-out-alt mb-2"></i>
+                                <div>Exit</div>
+                            </div>
+                        </a>
+                    </div></a>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-10 ms-sm-auto px-4 pt-3">
+                <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1>Stock Management System</h1>
+                </div> -->
+
+                <div id="dashboard">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h2>Dashboard Overview</h2>
+                    </div>
+                    
+                    <!-- Summary Cards -->
+                    <div class="row mb-4">
+                        <div class="col-xl-3 col-md-6 mb-3">
+                            <div class="card border-primary">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Stock</h5>
+                                    <h2 class="card-text">1,234</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-3">
+                            <div class="card border-success">
+                                <div class="card-body">
+                                    <h5 class="card-title">Stock In</h5>
+                                    <h2 class="card-text">456</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-3">
+                            <div class="card border-danger">
+                                <div class="card-body">
+                                    <h5 class="card-title">Stock Out</h5>
+                                    <h2 class="card-text">123</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-3">
+                            <div class="card border-info">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Accounts</h5>
+                                    <h2 class="card-text">45</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Stock Movement</h5>
+                                    <canvas id="stockChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Stock Distribution</h5>
+                                    <canvas id="distributionChart" ></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Recent Activity</h5>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Type</th>
+                                            <th>Item</th>
+                                            <th>Quantity</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2023-10-20</td>
+                                            <td>Stock In</td>
+                                            <td>Item A</td>
+                                            <td>100</td>
+                                            <td><span class="badge bg-success">Completed</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2023-10-19</td>
+                                            <td>Stock Out</td>
+                                            <td>Item B</td>
+                                            <td>50</td>
+                                            <td><span class="badge bg-success">Completed</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+               
+            </main>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script>
+        // Update the Add Stock button to trigger modal
+        document.querySelector('.btn-primary').setAttribute('data-bs-toggle', 'modal');
+        document.querySelector('.btn-primary').setAttribute('data-bs-target', '#addStockModal');
+    </script>
+    <script>
+        // Stock Movement Chart
+        const stockCtx = document.getElementById('stockChart').getContext('2d');
+        new Chart(stockCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Stock In',
+                    data: [65, 59, 80, 81, 56, 55],
+                    borderColor: 'rgb(40, 167, 69)',
+                    tension: 0.1
+                }, {
+                    label: 'Stock Out',
+                    data: [28, 48, 40, 19, 86, 27],
+                    borderColor: 'rgb(220, 53, 69)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Stock Distribution Chart
+        const distributionCtx = document.getElementById('distributionChart').getContext('2d');
+        var ctx2 = document.getElementById('myChart').getContext('2d');
+var campaignDonut = new Chart(distributionCtx, {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            data: [4, 6-4],
+            backgroundColor: ['#FFA400', 'rgba(200, 213, 222, 0.5)'],
+        }],
+    },
+    options: {
+        aspectRatio: 1,
+        layout: {
+            padding: {
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+            }
+        },
+        responsive: true,
+        cutoutPercentage: 90,
+        legend: {
+            display: false,
+        },
+        title: {
+            display: false,
+        },
+    }
+});;
+        
+    </script>
+
+</body>
+</html>
